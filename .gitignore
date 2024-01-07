@@ -4,4 +4,5 @@ target
 # Added by cargo
 
 /target
-/inputs
+/inputs/*
+!/inputs/.gitkeep
