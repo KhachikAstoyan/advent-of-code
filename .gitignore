@@ -6,4 +6,3 @@ target
 /target
 /inputs/*
 !/inputs/.gitkeep
-!/inputs/README.md
