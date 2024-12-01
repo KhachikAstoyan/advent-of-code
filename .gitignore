@@ -5,4 +5,5 @@ target
 
 /target
 /inputs/*.txt
+input*.txt
 !/inputs/.gitkeep
