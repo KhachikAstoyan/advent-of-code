@@ -6,6 +6,8 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
+// Uses strconv.ParseInt to parse a string into an int64.
+// Panics if the string cannot be parsed.
 func ParseInt(s string, base int, bitSize int) int64 {
 	num, err := strconv.ParseInt(s, base, bitSize)
 	CheckErr(err)
