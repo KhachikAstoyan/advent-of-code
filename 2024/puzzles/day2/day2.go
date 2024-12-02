@@ -21,22 +21,7 @@ func (d Day2) Part1() uint64 {
 	safeReports := 0
 
 	for _, report := range matrix {
-		isReportDecreasing := report[0] > report[1]
-		isSafe := true
-
-		// we're going to check report[0] and report[1] twice
-		// but it's not a big deal
-		for i := 1; i < len(report); i++ {
-			absDiff := utils.AbsDiff(report[i-1], report[i])
-			isDecr := report[i-1] > report[i]
-
-			if isReportDecreasing != isDecr || absDiff < 1 || absDiff > 3 {
-				isSafe = false
-				break
-			}
-		}
-
-		if isSafe {
+		if isSafeReport(report) {
 			safeReports++
 		}
 	}
@@ -45,7 +30,52 @@ func (d Day2) Part1() uint64 {
 }
 
 func (d Day2) Part2() uint64 {
-	return 0
+	matrix := parseMatrix(input)
+	safeReports := 0
+
+	for _, report := range matrix {
+		if isSafeReport(report) {
+			safeReports++
+		} else {
+			for i := 0; i < len(report); i++ {
+				// this part is pure trash
+				// I'm creating a lot of unnecessary slices
+				removed := removeElemAtIdx(report, i)
+
+				if isSafeReport(removed) {
+					safeReports++
+					break
+				}
+			}
+		}
+	}
+
+	return uint64(safeReports)
+}
+
+func isSafeReport(report []uint64) bool {
+	isReportDecreasing := report[0] > report[1]
+	isSafe := true
+
+	// we're going to check report[0] and report[1] twice
+	// but it's not a big deal
+	for i := 1; i < len(report); i++ {
+		absDiff := utils.AbsDiff(report[i-1], report[i])
+		isDecr := report[i-1] > report[i]
+
+		if isReportDecreasing != isDecr || absDiff < 1 || absDiff > 3 {
+			isSafe = false
+			break
+		}
+	}
+
+	return isSafe
+}
+
+func removeElemAtIdx(slice []uint64, idx int) []uint64 {
+	res := make([]uint64, 0, len(slice)-1)
+	res = append(res, slice[:idx]...)
+	return append(res, slice[idx+1:]...)
 }
 
 func parseMatrix(input string) [][]uint64 {
