@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"github.com/KhachikAstoyan/advent-of-code/2024/puzzles/day1"
+	"github.com/KhachikAstoyan/advent-of-code/2024/puzzles/day2"
 	"github.com/KhachikAstoyan/advent-of-code/2024/utils"
 )
 
@@ -11,6 +12,7 @@ func main() {
 	args := os.Args[1:]
 	days := []utils.Day{
 		day1.Day1{},
+		day2.Day2{},
 	}
 
 	if len(args) == 0 {
