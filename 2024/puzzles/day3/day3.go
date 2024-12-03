@@ -59,12 +59,24 @@ outer:
 func (d Day3) Part2() uint64 {
 	i := 0
 	sum := uint64(0)
+	shouldDo := true
 
 outer:
 	for i < len(input)-2 {
-		if input[i:i+3] == "mul" {
+		if isDoInstruction(input, i) {
+			shouldDo = true
+			i += 4
+		} else if isDontInstruction(input, i) {
+			shouldDo = false
+			i += 6
+		} else if input[i:i+3] == "mul" {
 			startIndex := i + 3
 			endIndex := i + 4
+
+			if !shouldDo {
+				i = endIndex
+				continue
+			}
 
 			if input[startIndex] != '(' {
 				i++
@@ -87,9 +99,10 @@ outer:
 
 			sum += prod
 			i = endIndex
+		} else {
+			i++
 		}
 
-		i++
 	}
 
 	return sum
@@ -111,6 +124,14 @@ func multiply(match string) (uint64, error) {
 	}
 
 	return uint64(a) * uint64(b), nil
+}
+
+func isDoInstruction(input string, i int) bool {
+	return i+4 < len(input) && input[i:i+4] == "do()"
+}
+
+func isDontInstruction(input string, i int) bool {
+	return i+7 < len(input) && input[i:i+7] == "don't()"
 }
 
 func isParenthesis(c byte) bool {
