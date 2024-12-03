@@ -79,7 +79,7 @@ outer:
 			}
 
 			if input[startIndex] != '(' {
-				i++
+				i = endIndex
 				continue
 			}
 
