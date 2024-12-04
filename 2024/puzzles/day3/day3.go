@@ -13,8 +13,7 @@ type Day3 struct{}
 var input string
 
 func (d Day3) Name() string {
-
-	return "Day 2: Red-Nosed Reports"
+	return "Day 3: Mull It Over"
 }
 
 func (d Day3) Part1() uint64 {

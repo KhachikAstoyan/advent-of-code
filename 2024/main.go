@@ -6,6 +6,7 @@ import (
 	"github.com/KhachikAstoyan/advent-of-code/2024/puzzles/day1"
 	"github.com/KhachikAstoyan/advent-of-code/2024/puzzles/day2"
 	"github.com/KhachikAstoyan/advent-of-code/2024/puzzles/day3"
+	"github.com/KhachikAstoyan/advent-of-code/2024/puzzles/day4"
 	"github.com/KhachikAstoyan/advent-of-code/2024/utils"
 )
 
@@ -15,6 +16,7 @@ func main() {
 		day1.Day1{},
 		day2.Day2{},
 		day3.Day3{},
+		day4.Day4{},
 	}
 
 	if len(args) == 0 {
